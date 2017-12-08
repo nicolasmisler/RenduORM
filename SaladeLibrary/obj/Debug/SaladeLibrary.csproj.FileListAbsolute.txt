@@ -1,0 +1,11 @@
+C:\Users\nicol\Documents\Visual Studio 2017\Projects\myORM\SaladeLibrary\bin\Debug\SaladeLibrary.dll.config
+C:\Users\nicol\Documents\Visual Studio 2017\Projects\myORM\SaladeLibrary\bin\Debug\SaladeLibrary.dll
+C:\Users\nicol\Documents\Visual Studio 2017\Projects\myORM\SaladeLibrary\bin\Debug\SaladeLibrary.pdb
+C:\Users\nicol\Documents\Visual Studio 2017\Projects\myORM\SaladeLibrary\bin\Debug\EntityFramework.dll
+C:\Users\nicol\Documents\Visual Studio 2017\Projects\myORM\SaladeLibrary\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\nicol\Documents\Visual Studio 2017\Projects\myORM\SaladeLibrary\bin\Debug\EntityFramework.xml
+C:\Users\nicol\Documents\Visual Studio 2017\Projects\myORM\SaladeLibrary\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\nicol\Documents\Visual Studio 2017\Projects\myORM\SaladeLibrary\obj\Debug\SaladeLibrary.csprojResolveAssemblyReference.cache
+C:\Users\nicol\Documents\Visual Studio 2017\Projects\myORM\SaladeLibrary\obj\Debug\SaladeLibrary.csproj.CoreCompileInputs.cache
+C:\Users\nicol\Documents\Visual Studio 2017\Projects\myORM\SaladeLibrary\obj\Debug\SaladeLibrary.dll
+C:\Users\nicol\Documents\Visual Studio 2017\Projects\myORM\SaladeLibrary\obj\Debug\SaladeLibrary.pdb

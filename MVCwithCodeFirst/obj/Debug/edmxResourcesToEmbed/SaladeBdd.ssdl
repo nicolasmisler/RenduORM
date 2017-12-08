@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SaladesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Aliments">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Fabricants">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="SaladeAliments">
+    <Key>
+      <PropertyRef Name="Salade_ID" />
+      <PropertyRef Name="Aliment_ID" />
+    </Key>
+    <Property Name="Salade_ID" Type="int" Nullable="false" />
+    <Property Name="Aliment_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Salades">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Fabricant_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_dbo_SaladeAliments_dbo_Aliments_Aliment_ID">
+    <End Role="Aliments" Type="Self.Aliments" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SaladeAliments" Type="Self.SaladeAliments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Aliments">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SaladeAliments">
+        <PropertyRef Name="Aliment_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_SaladeAliments_dbo_Salades_Salade_ID">
+    <End Role="Salades" Type="Self.Salades" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SaladeAliments" Type="Self.SaladeAliments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Salades">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SaladeAliments">
+        <PropertyRef Name="Salade_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Salades_dbo_Fabricants_Fabricant_ID">
+    <End Role="Fabricants" Type="Self.Fabricants" Multiplicity="0..1" />
+    <End Role="Salades" Type="Self.Salades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fabricants">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Salades">
+        <PropertyRef Name="Fabricant_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="SaladesModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Aliments" EntityType="Self.Aliments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Fabricants" EntityType="Self.Fabricants" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SaladeAliments" EntityType="Self.SaladeAliments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Salades" EntityType="Self.Salades" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_dbo_SaladeAliments_dbo_Aliments_Aliment_ID" Association="Self.FK_dbo_SaladeAliments_dbo_Aliments_Aliment_ID">
+      <End Role="Aliments" EntitySet="Aliments" />
+      <End Role="SaladeAliments" EntitySet="SaladeAliments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_SaladeAliments_dbo_Salades_Salade_ID" Association="Self.FK_dbo_SaladeAliments_dbo_Salades_Salade_ID">
+      <End Role="Salades" EntitySet="Salades" />
+      <End Role="SaladeAliments" EntitySet="SaladeAliments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Salades_dbo_Fabricants_Fabricant_ID" Association="Self.FK_dbo_Salades_dbo_Fabricants_Fabricant_ID">
+      <End Role="Fabricants" EntitySet="Fabricants" />
+      <End Role="Salades" EntitySet="Salades" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
